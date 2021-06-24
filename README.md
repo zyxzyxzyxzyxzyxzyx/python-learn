@@ -43,6 +43,7 @@
         |-- scripts2.sh   
     |-- docs                #  用于存放一下文档
     |-- requirements.txt    #  方便开发者维护软件的包依赖。将开发过程中新增的包添加进这个列表中，避免在setup.py安装依赖时漏掉软件包。
+    |-- requirements_dev.txt ,比requirements.txt多的是单元测试库
        
 ```
 
@@ -52,5 +53,37 @@
 
 ## 一、setup.py与requirements.txt的使用
 
-​     个人认为setup的作用实在是太太太太大了！以至于第一篇就开始学习这个。任何项目都需要使用第三方库，而python正因此火遍全球（站在巨人的肩膀上），若所有处理都要自己手动写一个方法开发效率会大大降低，并且bug也会越来越多。
+​     专业的python项目setup.py是必须的因为它包含了版本，包依赖信息，PyPi需要的项目描述，你的名字和联系信息，以及其它一些信息。它允许以编程的方式搜索安装包，提供元数据和指令说明让工具如何做。
+
+###   最小例子
+
+参考 https://godatadriven.com/blog/a-practical-guide-to-using-setup-py/
+
+```python
+from  setuptools  import  setup ,  find_packages 
+
+setup ( 
+    name = 'example' ,    # 包的名称 最好与所在文件夹名称一致
+    version = '0.1.0' ,   # 包的版本
+    packages = find_packages ( include = [ 'exampleproject' ,  'exampleproject.*' ]),  # 要包含的包
+    # 您可以指定不带版本的要求 ( PyYAML)、固定版本 ( pandas==0.23.3)、指定最低版本 ( 'numpy>=1.14.5) 或设置版本范围 ( matplotlib>=2.2.0,																				<3.0.0)。这些要求将pip在您安装软件包时自动安装。
+    install_requires = [  
+        'PyYAML' , 
+        'pandas==0.23.3' , 
+        'numpy>=1.14.5' , 
+        'matplotlib>=2.2.0, , 
+        'jupyter' 
+    ], 
+    # 在特殊情况下才需要的依赖项，例如测试环境需要而生产环境不需要的  
+    # 当我们指定了我们需要的可选的interactive依赖关系（pip install example[interactive]或pip install -e .[interactive])
+    extras_require = { 
+        'interactive' :  [ 'matplotlib>=2.2.0',  'jupyter' ], 
+    },   
+    # 将包的功能公开给命令行的最佳方法,使用命令my-command在命令行中，这将反过来执行main函数内exampleproject/example.py。
+    entry_points = { 
+        'console_scripts' :  [ 'my-command=exampleproject.example:main' ] 
+    } ,
+  
+)
+```
 
