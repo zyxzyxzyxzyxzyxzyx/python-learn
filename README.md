@@ -1,3 +1,5 @@
+
+
 # python-learn
 
 
@@ -86,4 +88,51 @@ setup (
   
 )
 ```
+
+# 3、  单元测试模块
+
+单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。是开发项目中必不可少的一部分
+
+### 关于断言
+
+| Method                                                       | Checks that                                                  | New in |
+| :----------------------------------------------------------- | :----------------------------------------------------------- | :----- |
+| [`assertEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertEqual) | `a == b`                                                     |        |
+| [`assertNotEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertNotEqual) | `a != b`                                                     |        |
+| [`assertTrue(x)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertTrue) | `bool(x) is True`                                            |        |
+| [`assertFalse(x)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertFalse) | `bool(x) is False`                                           |        |
+| [`assertIs(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertIs) | `a is b`                                                     | 3.1    |
+| [`assertIsNot(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertIsNot) | `a is not b`                                                 | 3.1    |
+| [`assertIsNone(x)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertIsNone) | `x is None`                                                  | 3.1    |
+| [`assertIsNotNone(x)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertIsNotNone) | `x is not None`                                              | 3.1    |
+| [`assertIn(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertIn) | `a in b`                                                     | 3.1    |
+| [`assertNotIn(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertNotIn) | `a not in b`                                                 | 3.1    |
+| [`assertIsInstance(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertIsInstance) | `isinstance(a, b)`                                           | 3.2    |
+| [`assertNotIsInstance(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertNotIsInstance) | `not isinstance(a, b)`                                       | 3.2    |
+|                                                              |                                                              |        |
+| [`assertAlmostEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertAlmostEqual) | `round(a-b, 7) == 0`                                         |        |
+| [`assertNotAlmostEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertNotAlmostEqual) | `round(a-b, 7) != 0`                                         |        |
+| [`assertGreater(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertGreater) | `a > b`                                                      | 3.1    |
+| [`assertGreaterEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertGreaterEqual) | `a >= b`                                                     | 3.1    |
+| [`assertLess(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertLess) | `a < b`                                                      | 3.1    |
+| [`assertLessEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertLessEqual) | `a <= b`                                                     | 3.1    |
+| [`assertRegex(s, r)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertRegex) | `r.search(s)`                                                | 3.1    |
+| [`assertNotRegex(s, r)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertNotRegex) | `not r.search(s)`                                            | 3.2    |
+| [`assertCountEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertCountEqual) | *a* and *b* have the same elements in the same number, regardless of their order. | 3.2    |
+|                                                              |                                                              |        |
+| [`assertMultiLineEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertMultiLineEqual) | strings                                                      | 3.1    |
+| [`assertSequenceEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertSequenceEqual) | sequences                                                    | 3.1    |
+| [`assertListEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertListEqual) | lists                                                        | 3.1    |
+| [`assertTupleEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertTupleEqual) | tuples                                                       | 3.1    |
+| [`assertSetEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertSetEqual) | sets or frozensets                                           | 3.1    |
+| [`assertDictEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertDictEqual) | dicts                                                        | 3.1    |
+
+
+
+| [`assertRaises(exc, fun, *args, **kwds)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertRaises) | `fun(*args, **kwds)` raises *exc*                            |      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| [`assertRaisesRegex(exc, r, fun, *args, **kwds)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertRaisesRegex) | `fun(*args, **kwds)` raises *exc* and the message matches regex *r* | 3.1  |
+| [`assertWarns(warn, fun, *args, **kwds)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertWarns) | `fun(*args, **kwds)` raises *warn*                           | 3.2  |
+| [`assertWarnsRegex(warn, r, fun, *args, **kwds)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertWarnsRegex) | `fun(*args, **kwds)` raises *warn* and the message matches regex *r* | 3.2  |
+| [`assertLogs(logger, level)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertLogs) | The `with` block logs on *logger* with minimum *level*       | 3.4  |
 
